@@ -1,0 +1,15 @@
+{
+	"name": "azure-de-practice-oct-2026",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "40490473-d86e-4c8d-8a8f-1bb68a227272",
+		"tenantId": "be2000e2-daca-400e-b3ee-3b47140fdd33"
+	}
+}
