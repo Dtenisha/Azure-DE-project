@@ -1,0 +1,12 @@
+{
+	"name": "azure_sql_fuel_tables",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "azure_sql_fuel_db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
