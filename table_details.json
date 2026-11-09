@@ -1,0 +1,45 @@
+
+[
+  {
+    "schema": "dbo",
+    "table": "DimCustomer",
+    "cdc_column": "updated_at",
+    "history_load_start_date": ""
+  },
+  {
+    "schema": "dbo",
+    "table": "DimDate",
+    "cdc_column": null,
+    "history_load_start_date": ""
+  },
+  {
+    "schema": "dbo",
+    "table": "DimFuelProduct",
+    "cdc_column": "updated_at",
+    "history_load_start_date": ""
+  },
+  {
+    "schema": "dbo",
+    "table": "DimPump",
+    "cdc_column": "updated_at",
+    "history_load_start_date": ""
+  },
+  {
+    "schema": "dbo",
+    "table": "DimStation",
+    "cdc_column": "updated_at",
+    "history_load_start_date": ""
+  },
+  {
+    "schema": "dbo",
+    "table": "FactFuelSale",
+    "cdc_column": "updated_at",
+    "history_load_start_date": ""
+  },
+  {
+    "schema": "dbo",
+    "table": "FactInventoryReading",
+    "cdc_column": "updated_at",
+    "history_load_start_date": ""
+  }
+]
