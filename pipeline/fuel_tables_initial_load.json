@@ -54,8 +54,8 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "copy_fuel_tables",
-							"type": "Copy",
+							"name": "create_fuel_folder",
+							"type": "WebActivity",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
@@ -66,55 +66,19 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "AzureSqlSource",
-									"queryTimeout": "02:00:00",
-									"partitionOption": "None"
+								"method": "PUT",
+								"url": {
+									"value": "@concat(\n  'https://azure1stdeproject.dfs.core.windows.net/sourcebronze/',\n  item().TABLE_NAME,\n  '?resource=directory'\n)",
+									"type": "Expression"
 								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
+								"authentication": {
+									"type": "MSI",
+									"resource": {
+										"value": "https://storage.azure.com/",
+										"type": "Expression"
 									}
 								}
-							},
-							"inputs": [
-								{
-									"referenceName": "azure_sql_fuel_tables",
-									"type": "DatasetReference",
-									"parameters": {
-										"tablename": {
-											"value": "@item().TABLE_NAME",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "parquet_dynamic",
-									"type": "DatasetReference",
-									"parameters": {
-										"container": "sourcebronze",
-										"folder": {
-											"value": "@item().TABLE_NAME",
-											"type": "Expression"
-										}
-									}
-								}
-							]
+							}
 						}
 					]
 				}
