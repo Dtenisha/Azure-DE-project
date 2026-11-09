@@ -31,7 +31,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT * FROM @{pipeline().parameters.schema}.@{pipeline().parameters.table}\nWHERE @{pipeline().parameters.cdc_column} > '@{activity('last_updated_cdc').output.value[0].cdc}'",
+							"value": "SELECT * FROM @{pipeline().parameters.schema}.@{pipeline().parameters.table}\nWHERE @{pipeline().parameters.cdc_column} > \n'@{if(empty(pipeline().parameters.history_load_start_date), activity('last_updated_cdc').output.value[0].cdc, \npipeline().parameters.history_load_start_date)}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -168,6 +168,7 @@
 									"referenceName": "parquet_dynamic",
 									"type": "DatasetReference",
 									"parameters": {
+										"container": "sourcebronze",
 										"folder": {
 											"value": "@pipeline().parameters.table",
 											"type": "Expression"
@@ -306,6 +307,12 @@
 				"type": "string"
 			},
 			"cdc_column": {
+				"type": "string"
+			},
+			"history_load_start_date": {
+				"type": "string"
+			},
+			"history_load_end_date": {
 				"type": "string"
 			}
 		},
